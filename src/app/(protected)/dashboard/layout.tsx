@@ -1,6 +1,5 @@
-import { GoogleSignInButton } from "@/app/ui/GoogleSignInButton";
-import { SignOut } from "@/app/ui/SignOut";
-import { Sign } from "crypto";
+import { GoogleSignInButton } from "@/app/components/google-sign-in-button";
+import { SignOut } from "@/app/components/sign-out-button";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,13 +12,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main>
-      <div>
-        <GoogleSignInButton />
-        <SignOut />
-      </div>
-      {children}
-    </main>
-  );
+  return <main>{children}</main>;
 }

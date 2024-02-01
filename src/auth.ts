@@ -5,6 +5,12 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
+  callbacks: {
+    signIn: async ({ user }) => {
+      console.log("#### signIn", user);
+      return true;
+    },
+  },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,

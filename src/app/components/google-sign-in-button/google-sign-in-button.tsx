@@ -5,7 +5,6 @@ import { signIn } from "next-auth/react";
 
 export const GoogleSignInButton = () => {
   const handleSignIn = () => {
-    console.log("#### signIn");
     signIn("google", { callbackUrl: DEFAULT_REDIRECT_URL });
   };
 
