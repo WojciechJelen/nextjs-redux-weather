@@ -1,11 +1,12 @@
 "use client";
 
-import { DEFAULT_REDIRECT_URL } from "@/app/routes";
-import { signIn } from "next-auth/react";
+import { signIn } from "@/lib/features/auth/authThunks";
+import { useAppDispatch } from "@/lib/hooks";
 
 export const GoogleSignInButton = () => {
+  const dispatch = useAppDispatch();
   const handleSignIn = () => {
-    signIn("google", { callbackUrl: DEFAULT_REDIRECT_URL });
+    dispatch(signIn());
   };
 
   return <button onClick={handleSignIn}>Sign in with Google</button>;

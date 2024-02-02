@@ -2,6 +2,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { UserState } from "./types";
 import { User } from "next-auth";
+import {} from "./authThunks";
 
 const initialState: UserState = {
   user: null,
@@ -18,6 +19,14 @@ export const userSlice = createSlice({
       state.user = null;
     },
   },
+  // extraReducers: (builder) => {
+  //    builder.addCase(signIn.fulfilled, (state, action) => {
+  //      state.user = action.payload;
+  //    });
+  //    builder.addCase(signOut.fulfilled, (state) => {
+  //      state.user = null;
+  //    });
+  // },
 });
 
 export const { setUser, clearUser } = userSlice.actions;

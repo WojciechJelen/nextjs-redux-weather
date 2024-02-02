@@ -6,10 +6,10 @@ export const {
   auth,
 } = NextAuth({
   callbacks: {
-    signIn: async ({ user }) => {
-      console.log("#### signIn", user);
-      return true;
-    },
+    // signIn: async ({ user }) => {
+    //   console.log("#### signIn", user);
+    //   return true;
+    // },
   },
   providers: [
     Google({

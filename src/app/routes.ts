@@ -22,3 +22,4 @@ export const AUTH_API_PREFIX = "/api/auth";
  * @type {string}
  */
 export const DEFAULT_REDIRECT_URL = "/dashboard";
+export const DEFAULT_REDIRECT_URL_AFTER_LOGOUT = "/";
