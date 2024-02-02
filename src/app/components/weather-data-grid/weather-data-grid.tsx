@@ -1,15 +1,14 @@
 "use client";
 
 import { useAppSelector } from "@/lib/hooks";
+import SearchWeather from "../search-weather/search-weather";
+import { DisplayWeatherData } from "../display-weather-data.tsx/display-weather-data";
 
 export const WeatherDataGrid = () => {
-  const user = useAppSelector((state) => state.auth.user);
-
   return (
     <div>
-      Weather Data Grid
-      <div>{JSON.stringify(user)}</div>
-      <div>WeatherDataGrid</div>
+      <SearchWeather />
+      <DisplayWeatherData />
     </div>
   );
 };
