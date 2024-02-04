@@ -12,7 +12,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { HourlyWeatherData } from "@/lib/features/weather/types";
 import { convertHourlyDataForChart } from "@/lib/features/weather/utils";
 import { useAppSelector } from "@/lib/hooks";
 

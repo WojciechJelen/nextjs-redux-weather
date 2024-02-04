@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchWeatherByCity } from "./weatherThunks";
-import { WeatherState } from "./types";
-
-export const initialState: WeatherState = {
-  data: null,
-  loading: false,
-  error: null,
-};
+import { CombinedWeatherData, WeatherState } from "./types";
+import { initialState } from "./initialState";
 
 const weatherSlice = createSlice({
   name: "weather",
@@ -20,7 +15,7 @@ const weatherSlice = createSlice({
       })
       .addCase(
         fetchWeatherByCity.fulfilled,
-        (state, action: PayloadAction<any>) => {
+        (state, action: PayloadAction<CombinedWeatherData>) => {
           state.loading = false;
           state.data = action.payload;
         }
