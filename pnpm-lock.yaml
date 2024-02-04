@@ -11,15 +11,24 @@ dependencies:
   '@reduxjs/toolkit':
     specifier: ^2.1.0
     version: 2.1.0(react-redux@9.1.0)(react@18.2.0)
+  chart.js:
+    specifier: ^4.4.1
+    version: 4.4.1
   next:
     specifier: 14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
   next-auth:
     specifier: 5.0.0-beta.5
     version: 5.0.0-beta.5(next@14.1.0)(react@18.2.0)
+  openmeteo:
+    specifier: ^1.1.3
+    version: 1.1.3
   react:
     specifier: ^18
     version: 18.2.0
+  react-chartjs-2:
+    specifier: ^5.2.0
+    version: 5.2.0(chart.js@4.4.1)(react@18.2.0)
   react-cool-onclickoutside:
     specifier: ^1.7.0
     version: 1.7.0(react@18.2.0)
@@ -165,6 +174,10 @@ packages:
       wrap-ansi-cjs: /wrap-ansi@7.0.0
     dev: true
 
+  /@kurkle/color@0.3.2:
+    resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
+    dev: false
+
   /@next/env@14.1.0:
     resolution: {integrity: sha512-Py8zIo+02ht82brwwhTg36iogzFqGLPXlRGKQw5s+qP/kMNc4MAyDeEwBKDijk6zTIbegEgu8Qy7C1LboslQAw==}
     dev: false
@@ -276,6 +289,13 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.0
     dev: true
+
+  /@openmeteo/sdk@1.8.0:
+    resolution: {integrity: sha512-caqfzGqgzxRG2wG0NYCRqHN1Cp/FCAGR2tvJxfOt+G8O0Odxd3++DKWtASyn6rAjrS/WJpcW3kASbP17A6sTDw==}
+    engines: {node: '>=12.0'}
+    dependencies:
+      flatbuffers: 23.5.26
+    dev: false
 
   /@panva/hkdf@1.1.1:
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
@@ -649,6 +669,13 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
+
+  /chart.js@4.4.1:
+    resolution: {integrity: sha512-C74QN1bxwV1v2PEujhmKjOZ7iUM4w6BWs23Md/6aOZZSlwMzeCIDGuZay++rBgChYru7/+QFeoQW0fQoP534Dg==}
+    engines: {pnpm: '>=7'}
+    dependencies:
+      '@kurkle/color': 0.3.2
+    dev: false
 
   /chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -1220,6 +1247,10 @@ packages:
       keyv: 4.5.4
       rimraf: 3.0.2
     dev: true
+
+  /flatbuffers@23.5.26:
+    resolution: {integrity: sha512-vE+SI9vrJDwi1oETtTIFldC/o9GsVKRM+s6EL0nQgxXlYV1Vc4Tk30hj4xGICftInKQKj1F3up2n8UbIVobISQ==}
+    dev: false
 
   /flatted@3.2.9:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
@@ -1925,6 +1956,14 @@ packages:
       wrappy: 1.0.2
     dev: true
 
+  /openmeteo@1.1.3:
+    resolution: {integrity: sha512-f4ycmEA9rnhH4mPkDSLAuZ9dCu33nZ2bP7pLUJmZp2YYAuIDrGDIWU/VXQPmG48l5s+vw0VcnH9+CMqL57oADQ==}
+    engines: {node: '>=12.0'}
+    dependencies:
+      '@openmeteo/sdk': 1.8.0
+      flatbuffers: 23.5.26
+    dev: false
+
   /optionator@0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
@@ -2045,6 +2084,16 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /react-chartjs-2@5.2.0(chart.js@4.4.1)(react@18.2.0):
+    resolution: {integrity: sha512-98iN5aguJyVSxp5U3CblRLH67J8gkfyGNbiK3c+l1QI/G4irHMPQw44aEPmjVag+YKTyQ260NcF82GTQ3bdscA==}
+    peerDependencies:
+      chart.js: ^4.1.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      chart.js: 4.4.1
+      react: 18.2.0
+    dev: false
 
   /react-cool-onclickoutside@1.7.0(react@18.2.0):
     resolution: {integrity: sha512-HVZK2155Unee+enpoHKyYP2UdQK69thw90XAOUCjvJBcgRSgfRPgWWt/W1dYzoGp3+nleAa8SJxF1d4FMA4Qmw==}

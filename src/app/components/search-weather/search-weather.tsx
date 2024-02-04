@@ -5,9 +5,10 @@ import { useAppDispatch } from "@/lib/hooks";
 import React, { useEffect, useState } from "react";
 import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { Loader } from "@googlemaps/js-api-loader";
+import { CityData } from "@/lib/features/weather/types";
 
 const SearchWeather = () => {
-  const [city, setCity] = useState("");
+  const [cityData, setCityData] = useState<CityData>();
   const dispatch = useAppDispatch();
   const [googleApisLoaded, setGoogleApisLoaded] = useState(false);
 
@@ -29,8 +30,10 @@ const SearchWeather = () => {
   }, []);
 
   const handleFetchWeather = async () => {
+    if (!cityData) return;
+
     try {
-      await dispatch(fetchWeatherByCity(city)).unwrap();
+      await dispatch(fetchWeatherByCity(cityData)).unwrap();
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +47,11 @@ const SearchWeather = () => {
     <div>
       <PlacesAutocomplete
         onLocationSelect={(results) =>
-          setCity(results[0].address_components[0].long_name)
+          setCityData({
+            name: results[0].formatted_address,
+            lat: results[0].geometry.location.lat(),
+            lon: results[0].geometry.location.lng(),
+          })
         }
       />
 

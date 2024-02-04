@@ -44,8 +44,39 @@ export type FetchWeatherError = {
   message: string;
 };
 
+export type CombinedWeatherData = {
+  currentWeather: WeatherDataType;
+  historicalWeather: HourlyWeatherData;
+};
+
+export type CityData = {
+  name: string;
+  lat: number;
+  lon: number;
+};
+
+export type HourlyWeatherData = {
+  time: string[];
+  temperature_2m: number[];
+};
+
+export type HistoricalTemperatureResponseDataType = {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  hourly_units: {
+    time: string;
+    temperature_2m: string;
+  };
+  hourly: HourlyWeatherData;
+};
+
 export type WeatherState = {
-  data: WeatherDataType | null;
+  data: CombinedWeatherData | null;
   loading: boolean;
   error: FetchWeatherError | null;
 };
