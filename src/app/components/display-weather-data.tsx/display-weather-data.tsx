@@ -14,7 +14,7 @@ export const DisplayWeatherData = () => {
   return (
     <div>
       <h1>Weather Data</h1>
-      <div>{JSON.stringify(data?.historicalWeather)}</div>
+      <div>{JSON.stringify(data?.currentWeather)}</div>
     </div>
   );
 };

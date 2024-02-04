@@ -29,8 +29,6 @@ ChartJS.register(
 const TemperatureChart: React.FC = () => {
   const { data, loading, error } = useAppSelector((state) => state.weather);
 
-  console.log("####CHART", data?.historicalWeather);
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -39,11 +37,11 @@ const TemperatureChart: React.FC = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  // const chartData = convertHourlyDataForChart(weatherData?.historicalWeather);
+  const chartData = convertHourlyDataForChart(data?.historicalWeather!);
   return (
     <div>
       <h2>Hourly Temperature Chart</h2>
-      {/* <Line data={chartData} /> */}
+      <Line data={chartData} />
     </div>
   );
 };
