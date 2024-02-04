@@ -5,11 +5,10 @@ import { useAppDispatch } from "@/lib/hooks";
 import React, { useCallback, useEffect, useState } from "react";
 import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { Loader } from "@googlemaps/js-api-loader";
-import { CityData } from "@/lib/features/weather/types";
+import { getLatLng } from "use-places-autocomplete";
 import styles from "./search-weather.module.scss";
 
 const SearchWeather = () => {
-  const [cityData, setCityData] = useState<CityData>();
   const dispatch = useAppDispatch();
   const [googleApisLoaded, setGoogleApisLoaded] = useState(false);
 
@@ -30,15 +29,25 @@ const SearchWeather = () => {
       });
   }, []);
 
-  const handleFetchWeather = useCallback(async () => {
-    if (!cityData) return;
+  const handleSelect = useCallback(
+    async (results: google.maps.GeocoderResult[]) => {
+      if (!results.length) return;
+      const { lat, lng } = getLatLng(results[0]);
 
-    try {
-      await dispatch(fetchWeatherByCity(cityData)).unwrap();
-    } catch (error) {
-      console.error(error);
-    }
-  }, [cityData, dispatch]);
+      try {
+        await dispatch(
+          fetchWeatherByCity({
+            lat,
+            lon: lng,
+            name: results[0].address_components[0].long_name,
+          })
+        ).unwrap();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [dispatch]
+  );
 
   if (!googleApisLoaded) {
     return null;
@@ -46,22 +55,7 @@ const SearchWeather = () => {
 
   return (
     <div className={styles.wrapper}>
-      <PlacesAutocomplete
-        onLocationSelect={(results) =>
-          setCityData({
-            name: results[0].address_components[0].long_name,
-            lat: results[0].geometry.location.lat(),
-            lon: results[0].geometry.location.lng(),
-          })
-        }
-      />
-
-      <button
-        className={styles.fetchWeatherButton}
-        onClick={handleFetchWeather}
-      >
-        Fetch Weather
-      </button>
+      <PlacesAutocomplete onLocationSelect={handleSelect} />
     </div>
   );
 };

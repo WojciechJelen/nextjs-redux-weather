@@ -1,40 +1,63 @@
 .card {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px 60px;
+  padding: 20px;
   text-align: center;
   width: 100%;
+  max-width: 480px;
+  margin: auto;
+  gap: 20px;
 }
 
 .title {
   color: #333;
-  margin: 0;
+  margin-bottom: 10px;
   font-size: 24px;
+  font-weight: bold;
 }
 
 .icon {
   width: 100px;
-  height: auto;
-  margin: 8px 0;
+  height: 100px;
+  margin: 0 auto;
 }
 
 .temperature {
   color: #e57373;
-  font-size: 32px;
+  font-size: 48px;
   margin: 0;
+  font-weight: bold;
 }
 
 .description {
   color: #666;
-  font-size: 18px;
+  font-size: 20px;
   margin: 5px 0 20px;
 }
 
 .details {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
   font-size: 16px;
   color: #333;
   padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.error {
+  padding: 20px;
+  background-color: #ffcccc;
+  color: #cc0000;
+  text-align: center;
+  border-radius: 8px;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
