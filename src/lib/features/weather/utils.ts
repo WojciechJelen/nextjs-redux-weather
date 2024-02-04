@@ -25,8 +25,6 @@ export const convertHourlyDataForChart = (hourlyData: HourlyData) => {
     data.push(parseFloat(averageTemp.toFixed(2))); // Keeping only two decimal places for cleanliness
   });
 
-  console.log("###CART DATA", labels, data);
-
   return {
     labels,
     datasets: [

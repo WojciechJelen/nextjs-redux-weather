@@ -1,1 +1,1 @@
-export { WeatherHistory } from "./weather-history";
+export { TemperatureChart } from "./temperature-chart";

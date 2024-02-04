@@ -76,7 +76,7 @@ export type HistoricalTemperatureResponseDataType = {
 };
 
 export type WeatherState = {
-  data: CombinedWeatherData | null;
+  data: CombinedWeatherData;
   loading: boolean;
   error: FetchWeatherError | null;
 };

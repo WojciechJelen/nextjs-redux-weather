@@ -15,6 +15,8 @@ import {
 import { convertHourlyDataForChart } from "@/lib/features/weather/utils";
 import { useAppSelector } from "@/lib/hooks";
 
+import styles from "./temperature-chart.module.scss";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,24 +27,35 @@ ChartJS.register(
   Legend
 );
 
-const TemperatureChart: React.FC = () => {
+export const TemperatureChart: React.FC = () => {
   const { data, loading, error } = useAppSelector((state) => state.weather);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const getContent = () => {
+    if (loading) {
+      return <div className={styles.message}>Loading...</div>;
+    }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+    if (error) {
+      return (
+        <div className={styles.errorMessage}>
+          {`Can't fetch history data due to error.`}
+        </div>
+      );
+    }
 
-  const chartData = convertHourlyDataForChart(data?.historicalWeather!);
+    if (!data?.historicalWeather) {
+      return <div className={styles.message}>No data available</div>;
+    }
+
+    return <Line data={chartData} />;
+  };
+
+  const chartData = convertHourlyDataForChart(data?.historicalWeather);
+
   return (
-    <div>
-      <h2>Hourly Temperature Chart</h2>
-      <Line data={chartData} />
+    <div className={styles.wrapper}>
+      <h2 className={styles.header}>Last 10 days average temperatures</h2>
+      {getContent()}
     </div>
   );
 };
-
-export default TemperatureChart;

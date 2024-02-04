@@ -3,6 +3,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import styles from "./places-autocomplete.module.scss";
 
 type PropsType = {
   onLocationSelect: (results: google.maps.GeocoderResult[]) => void;
@@ -36,9 +37,6 @@ export const PlacesAutocomplete = ({ onLocationSelect }: PropsType) => {
       clearSuggestions();
 
       getGeocode({ address: description }).then((results) => {
-        const { lat, lng } = getLatLng(results[0]);
-        console.log("📍 Coordinates: ", { lat, lng });
-        console.log("📍 Address: ", results);
         onLocationSelect(results);
       });
     };
@@ -51,21 +49,28 @@ export const PlacesAutocomplete = ({ onLocationSelect }: PropsType) => {
       } = suggestion;
 
       return (
-        <li key={place_id} onClick={handleSelect(suggestion)}>
+        <li
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+          className={styles.selectListItem}
+        >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
       );
     });
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={styles.inputWrapper}>
       <input
+        className={styles.input}
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Where are you going?"
+        placeholder="What is the weather in...?"
       />
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && (
+        <ul className={styles.selectList}>{renderSuggestions()}</ul>
+      )}
     </div>
   );
 };

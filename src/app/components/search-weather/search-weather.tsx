@@ -2,10 +2,11 @@
 
 import { fetchWeatherByCity } from "@/lib/features/weather/weatherThunks";
 import { useAppDispatch } from "@/lib/hooks";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { Loader } from "@googlemaps/js-api-loader";
 import { CityData } from "@/lib/features/weather/types";
+import styles from "./search-weather.module.scss";
 
 const SearchWeather = () => {
   const [cityData, setCityData] = useState<CityData>();
@@ -29,7 +30,7 @@ const SearchWeather = () => {
       });
   }, []);
 
-  const handleFetchWeather = async () => {
+  const handleFetchWeather = useCallback(async () => {
     if (!cityData) return;
 
     try {
@@ -37,25 +38,30 @@ const SearchWeather = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [cityData, dispatch]);
 
   if (!googleApisLoaded) {
     return null;
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <PlacesAutocomplete
         onLocationSelect={(results) =>
           setCityData({
-            name: results[0].formatted_address,
+            name: results[0].address_components[0].long_name,
             lat: results[0].geometry.location.lat(),
             lon: results[0].geometry.location.lng(),
           })
         }
       />
 
-      <button onClick={handleFetchWeather}>Fetch Weather</button>
+      <button
+        className={styles.fetchWeatherButton}
+        onClick={handleFetchWeather}
+      >
+        Fetch Weather
+      </button>
     </div>
   );
 };

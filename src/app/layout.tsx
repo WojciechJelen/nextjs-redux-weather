@@ -1,8 +1,10 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import styles from "./layout.module.scss";
 import { Header } from "./components/header/header";
 import { clsx } from "clsx";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={layoutClassName}>
         <Header />
-        {children}
+        <div className={styles.container}>{children}</div>
       </body>
     </html>
   );

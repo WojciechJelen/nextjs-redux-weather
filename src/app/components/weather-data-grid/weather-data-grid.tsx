@@ -1,13 +1,12 @@
-"use client";
-
+import { CurrentWeather } from "../current-weather/current-weather";
 import SearchWeather from "../search-weather/search-weather";
-import { DisplayWeatherData } from "../display-weather-data.tsx/display-weather-data";
+import style from "./weather-data-grid.module.scss";
 
 export const WeatherDataGrid = () => {
   return (
-    <div>
+    <div className={style.wrapper}>
       <SearchWeather />
-      <DisplayWeatherData />
+      <CurrentWeather />
     </div>
   );
 };
