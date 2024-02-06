@@ -1,7 +1,8 @@
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import styles from "./places-autocomplete.module.scss";
 import clsx from "clsx";
+import { useState } from "react";
+import styles from "./places-autocomplete.module.scss";
 
 type PropsType = {
   onLocationSelect: (results: google.maps.GeocoderResult[]) => void;
@@ -29,8 +30,9 @@ export const PlacesAutocomplete = ({
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
+  const [error, setError] = useState<Error | null>(null);
 
-  const handleInput = (e: any) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
@@ -40,9 +42,13 @@ export const PlacesAutocomplete = ({
       setValue(description, false);
       clearSuggestions();
 
-      getGeocode({ address: description }).then((results) => {
-        onLocationSelect(results);
-      });
+      getGeocode({ address: description })
+        .then((results) => {
+          onLocationSelect(results);
+        })
+        .catch((error) => {
+          setError(error as unknown as Error);
+        });
     };
 
   const renderSuggestions = () =>
@@ -76,6 +82,7 @@ export const PlacesAutocomplete = ({
         disabled={!ready || disabled}
         placeholder={disabled ? disabledText : "What is the weather in...?"}
       />
+      {error && <p className={styles.error}>{error.message}</p>}
       {status === "OK" && (
         <ul className={styles.selectList}>{renderSuggestions()}</ul>
       )}

@@ -1,6 +1,5 @@
-import styles from "./page.module.scss";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 export default async function Home() {
   const session = await auth();

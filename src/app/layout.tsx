@@ -1,13 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { clsx } from "clsx";
 import styles from "./layout.module.scss";
 import { Header } from "./components/header/header";
-import { clsx } from "clsx";
 import SearchWeather from "./components/search-weather/search-weather";
 import StoreProvider from "./store-provider";
-import { auth } from "@/auth";
 import { Container } from "./components/ui/container";
+import { auth } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 

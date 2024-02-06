@@ -1,11 +1,11 @@
 "use client";
 
-import { useAppSelector } from "@/lib/hooks";
 import Image from "next/image";
 import styles from "./current-weather.module.scss";
+import { useAppSelector } from "@/lib/hooks";
 
 export const CurrentWeather = () => {
-  const { data, loading, error } = useAppSelector((state) => state.weather);
+  const { data, error } = useAppSelector((state) => state.weather);
   const { name, weather, main, wind } = data.currentWeather;
   const temperatureCelsius = main.temp ? (main.temp - 273.15).toFixed(1) : "~"; // Convert Kelvin to Celsius
 

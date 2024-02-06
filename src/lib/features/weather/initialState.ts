@@ -1,4 +1,4 @@
-import { WeatherState } from "./types";
+import { type WeatherState } from "./types";
 
 export const initialState: WeatherState = {
   data: {

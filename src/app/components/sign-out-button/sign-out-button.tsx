@@ -1,12 +1,13 @@
 "use client";
 
+import styles from "./sign-out.module.scss";
 import { signOut } from "@/lib/features/auth/authThunks";
 import { useAppDispatch } from "@/lib/hooks";
-import styles from "./sign-out.module.scss";
 
 export const SignOut = () => {
   const dispatch = useAppDispatch();
   const handleSignOut = () => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dispatch(signOut());
   };
 

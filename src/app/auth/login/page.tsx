@@ -1,7 +1,7 @@
-import { GoogleSignInButton } from "@/app/components/google-sign-in-button";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import styles from "./page.module.scss";
+import { GoogleSignInButton } from "@/app/components/google-sign-in-button";
+import { auth } from "@/auth";
 
 const LoginPage = async () => {
   const session = await auth();

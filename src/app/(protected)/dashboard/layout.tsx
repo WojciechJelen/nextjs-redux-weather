@@ -1,5 +1,3 @@
-import { GoogleSignInButton } from "@/app/components/google-sign-in-button";
-import { SignOut } from "@/app/components/sign-out-button";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

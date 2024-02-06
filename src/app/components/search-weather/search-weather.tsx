@@ -1,18 +1,19 @@
 "use client";
 
-import { fetchWeatherByCity } from "@/lib/features/weather/weatherThunks";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import React, { useCallback, useEffect, useState } from "react";
-import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { Loader } from "@googlemaps/js-api-loader";
 import { getLatLng } from "use-places-autocomplete";
-import styles from "./search-weather.module.scss";
+import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { InputPlaceholder } from "../places-autocomplete/placeholder";
+import styles from "./search-weather.module.scss";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { fetchWeatherByCity } from "@/lib/features/weather/weatherThunks";
 
 const SearchWeather = () => {
   const dispatch = useAppDispatch();
   const [googleApisLoaded, setGoogleApisLoaded] = useState(false);
   const user = useAppSelector((state) => state.auth.user);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const loader = new Loader({
@@ -45,7 +46,7 @@ const SearchWeather = () => {
           })
         ).unwrap();
       } catch (error) {
-        console.error(error);
+        setError(error as Error);
       }
     },
     [dispatch]
@@ -62,10 +63,12 @@ const SearchWeather = () => {
   return (
     <div className={styles.wrapper}>
       <PlacesAutocomplete
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onLocationSelect={handleSelect}
         disabled={!user}
         disabledText="Sign In to search weather!"
       />
+      {error && <p className={styles.error}>{error.message}</p>}
     </div>
   );
 };

@@ -11,10 +11,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import styles from "./temperature-chart.module.scss";
 import { convertHourlyDataForChart } from "@/lib/features/weather/utils";
 import { useAppSelector } from "@/lib/hooks";
-
-import styles from "./temperature-chart.module.scss";
 
 ChartJS.register(
   CategoryScale,
@@ -53,7 +52,9 @@ export const TemperatureChart: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.header}>Last 10 days average temperatures</h2>
+      <h2 className={styles.header}>{`Last 10 days average temperatures for ${
+        data?.currentWeather?.name ?? ""
+      }`}</h2>
       {getContent()}
     </div>
   );

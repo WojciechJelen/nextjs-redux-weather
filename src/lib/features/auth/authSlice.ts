@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { type User } from "next-auth";
 import type { UserState } from "./types";
-import { User } from "next-auth";
 
 const initialState: UserState = {
   user: null,
@@ -21,4 +21,4 @@ export const userSlice = createSlice({
 
 export const { setUser, clearUser } = userSlice.actions;
 
-export default userSlice.reducer;
+export const authReducer = userSlice.reducer;

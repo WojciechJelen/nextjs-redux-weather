@@ -1,6 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  type SerializedError,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 import { fetchWeatherByCity } from "./weatherThunks";
-import { CombinedWeatherData } from "./types";
+import { type FetchWeatherError, type CombinedWeatherData } from "./types";
 import { initialState } from "./initialState";
 
 const weatherSlice = createSlice({
@@ -22,12 +26,22 @@ const weatherSlice = createSlice({
       )
       .addCase(
         fetchWeatherByCity.rejected,
-        (state, action: PayloadAction<any>) => {
+        (
+          state,
+          action: PayloadAction<
+            FetchWeatherError | undefined,
+            string,
+            unknown,
+            SerializedError
+          >
+        ) => {
           state.loading = false;
-          state.error = action.payload;
+          state.error = action.payload ?? {
+            message: "An unknown error occurred",
+          };
         }
       );
   },
 });
 
-export default weatherSlice.reducer;
+export const weatherReducer = weatherSlice.reducer;

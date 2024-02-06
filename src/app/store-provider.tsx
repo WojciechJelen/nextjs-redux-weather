@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore } from "@/lib/store";
-import { setUser } from "@/lib/features/auth/authSlice";
 import type { User } from "next-auth";
+import { makeStore, type AppStore } from "@/lib/store";
+import { setUser } from "@/lib/features/auth/authSlice";
 
 export default function StoreProvider({
   children,

@@ -1,10 +1,11 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
+import type {
   CityData,
   CombinedWeatherData,
   FetchWeatherError,
   HistoricalTemperatureResponseDataType,
+  WeatherDataType,
 } from "./types";
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -45,7 +46,7 @@ const fetchWeatherData = async ({
   };
 
   return {
-    currentWeather: data[0],
+    currentWeather: data[0] as WeatherDataType,
     historicalWeather,
   };
 };

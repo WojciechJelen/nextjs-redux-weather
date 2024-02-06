@@ -1,4 +1,4 @@
-import { CombinedWeatherData } from "../types";
+import { type CombinedWeatherData } from "../types";
 
 export const mockCombinedWeatherData: CombinedWeatherData = {
   currentWeather: {

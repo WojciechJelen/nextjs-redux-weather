@@ -1,12 +1,12 @@
 "use client";
 
-import { useAppSelector } from "@/lib/hooks";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { GoogleSignInButton } from "../google-sign-in-button";
 import { SignOut } from "../sign-out-button";
-import Link from "next/link";
 import { UserProfile } from "./user-profile/user-profile";
 import styles from "./navbar.module.scss";
-import { usePathname } from "next/navigation";
+import { useAppSelector } from "@/lib/hooks";
 
 export const Navbar = () => {
   const user = useAppSelector((state) => state.auth.user);
