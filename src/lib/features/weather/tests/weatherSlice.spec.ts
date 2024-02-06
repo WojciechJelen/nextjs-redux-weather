@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import weatherReducer from "../weatherSlice";
+import { weatherReducer } from "../weatherSlice";
 import { fetchWeatherByCity } from "../weatherThunks";
 import { type CombinedWeatherData, type WeatherState } from "../types";
 import { initialState } from "../initialState";
