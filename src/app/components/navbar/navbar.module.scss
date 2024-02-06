@@ -1,7 +1,7 @@
 .navbar {
   background-color: #2c3e50;
   color: #ecf0f1;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 }
 
 .container {
@@ -10,13 +10,13 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .navigationItems {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 30px;
   margin: 0;
   padding: 0;
 
@@ -24,6 +24,7 @@
     color: #ecf0f1;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 0.5rem;
 
     &:hover {
       color: #bdc3c7;
@@ -39,6 +40,7 @@
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  display: none;
 }
 
 .userActions {
@@ -47,19 +49,34 @@
   gap: 20px;
 }
 
+@media (min-width: 993px) {
+  .logo {
+    display: block;
+  }
+}
+
+@media (max-width: 992px) {
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
     text-align: center;
+    padding: 0 1rem;
   }
 
-  .navigationItems {
+  .navigationItems,
+  .userActions {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
 
   .userActions {
-    flex-direction: column;
-    gap: 10px;
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .navigationItems li a {
+    padding: 0.75rem;
   }
 }
