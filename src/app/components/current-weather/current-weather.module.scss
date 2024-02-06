@@ -61,3 +61,35 @@
   max-width: 480px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.iconPlaceholder {
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  background-color: #f3f3f3;
+  border-radius: 8px; // Adjust if you want a different border radius
+  margin: auto;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+  }
+}

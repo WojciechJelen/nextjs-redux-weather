@@ -3,7 +3,6 @@
 import { useAppSelector } from "@/lib/hooks";
 import Image from "next/image";
 import styles from "./current-weather.module.scss";
-import { Placeholder } from "../ui/placeholder";
 
 export const CurrentWeather = () => {
   const { data, loading, error } = useAppSelector((state) => state.weather);
@@ -43,7 +42,7 @@ export const CurrentWeather = () => {
             height={100}
           />
         ) : (
-          <Placeholder width="100px" height="100px" />
+          <div className={styles.iconPlaceholder}></div>
         )}
         <p className={styles.temperature}>{temperatureCelsius}°C</p>
       </div>

@@ -1,0 +1,74 @@
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f3f3f3;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  gap: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+  }
+}
+
+.placeholder {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.titlePlaceholder {
+  width: 60%;
+  height: 24px;
+  margin: 0 auto 20px;
+}
+
+.iconPlaceholder {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.temperaturePlaceholder {
+  width: 50%;
+  height: 48px;
+  margin: 20px auto;
+}
+
+.descriptionPlaceholder {
+  width: 70%;
+  height: 20px;
+  margin: 0 auto 20px;
+}
+
+.detailsPlaceholder {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.detailPlaceholder {
+  width: 45%;
+  height: 16px;
+}
