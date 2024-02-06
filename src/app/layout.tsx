@@ -4,6 +4,10 @@ import { Inter } from "next/font/google";
 import styles from "./layout.module.scss";
 import { Header } from "./components/header/header";
 import { clsx } from "clsx";
+import SearchWeather from "./components/search-weather/search-weather";
+import StoreProvider from "./store-provider";
+import { auth } from "@/auth";
+import { Container } from "./components/ui/container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,17 +18,24 @@ export const metadata: Metadata = {
 
 const layoutClassName = clsx(styles.layoutWrapper, inter.className);
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <html lang="en">
-      <body className={layoutClassName}>
-        <Header />
-        <div className={styles.container}>{children}</div>
-      </body>
-    </html>
+    <StoreProvider user={session?.user ?? null}>
+      <html lang="en">
+        <body className={layoutClassName}>
+          <Header />
+          <Container>
+            <SearchWeather />
+            {children}
+          </Container>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

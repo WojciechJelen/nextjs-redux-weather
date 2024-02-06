@@ -6,20 +6,29 @@ import { SignOut } from "../sign-out-button";
 import Link from "next/link";
 import { UserProfile } from "./user-profile/user-profile";
 import styles from "./navbar.module.scss";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
   const user = useAppSelector((state) => state.auth.user);
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/history", label: "History" },
+  ];
 
   return (
     <div className={styles.navbar}>
       <div className={styles.container}>
         <ul className={styles.navigationItems}>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link href="/history">History</Link>
-          </li>
+          {links.map(({ href, label }) => {
+            const isActive = href === pathname;
+            return (
+              <li key={href} className={isActive ? styles.active : ""}>
+                <Link href={href}>{label}</Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className={styles.logo}>Weather App</div>

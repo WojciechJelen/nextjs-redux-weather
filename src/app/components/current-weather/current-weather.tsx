@@ -10,8 +10,6 @@ export const CurrentWeather = () => {
   const { name, weather, main, wind } = data.currentWeather;
   const temperatureCelsius = main.temp ? (main.temp - 273.15).toFixed(1) : "~"; // Convert Kelvin to Celsius
 
-  if (loading) return <Placeholder width="100%" height="230px" />;
-
   if (error) {
     return (
       <div className={styles.card}>

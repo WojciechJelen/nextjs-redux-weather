@@ -1,16 +1,18 @@
 "use client";
 
 import { fetchWeatherByCity } from "@/lib/features/weather/weatherThunks";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import React, { useCallback, useEffect, useState } from "react";
 import { PlacesAutocomplete } from "../places-autocomplete/places-autocomplete";
 import { Loader } from "@googlemaps/js-api-loader";
 import { getLatLng } from "use-places-autocomplete";
 import styles from "./search-weather.module.scss";
+import { InputPlaceholder } from "../places-autocomplete/placeholder";
 
 const SearchWeather = () => {
   const dispatch = useAppDispatch();
   const [googleApisLoaded, setGoogleApisLoaded] = useState(false);
+  const user = useAppSelector((state) => state.auth.user);
 
   useEffect(() => {
     const loader = new Loader({
@@ -50,12 +52,20 @@ const SearchWeather = () => {
   );
 
   if (!googleApisLoaded) {
-    return null;
+    return (
+      <div className={styles.wrapper}>
+        <InputPlaceholder />
+      </div>
+    );
   }
 
   return (
     <div className={styles.wrapper}>
-      <PlacesAutocomplete onLocationSelect={handleSelect} />
+      <PlacesAutocomplete
+        onLocationSelect={handleSelect}
+        disabled={!user}
+        disabledText="Sign In to search weather!"
+      />
     </div>
   );
 };

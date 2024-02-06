@@ -1,6 +1,8 @@
 .wrapper {
+  margin: 0 auto;
+  margin-top: 40px;
   display: flex;
   margin-bottom: 20px;
   justify-content: space-between;
-  width: 100%;
+  max-width: 480px;
 }

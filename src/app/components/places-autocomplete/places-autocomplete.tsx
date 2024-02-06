@@ -1,12 +1,19 @@
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import styles from "./places-autocomplete.module.scss";
+import clsx from "clsx";
 
 type PropsType = {
   onLocationSelect: (results: google.maps.GeocoderResult[]) => void;
+  disabled?: boolean;
+  disabledText?: string;
 };
 
-export const PlacesAutocomplete = ({ onLocationSelect }: PropsType) => {
+export const PlacesAutocomplete = ({
+  onLocationSelect,
+  disabled,
+  disabledText = "Search is disabled",
+}: PropsType) => {
   const {
     ready,
     value,
@@ -56,14 +63,18 @@ export const PlacesAutocomplete = ({ onLocationSelect }: PropsType) => {
       );
     });
 
+  const classNames = clsx(styles.input, {
+    [styles.disabled]: disabled,
+  });
+
   return (
     <div ref={ref} className={styles.inputWrapper}>
       <input
-        className={styles.input}
+        className={classNames}
         value={value}
         onChange={handleInput}
-        disabled={!ready}
-        placeholder="What is the weather in...?"
+        disabled={!ready || disabled}
+        placeholder={disabled ? disabledText : "What is the weather in...?"}
       />
       {status === "OK" && (
         <ul className={styles.selectList}>{renderSuggestions()}</ul>
