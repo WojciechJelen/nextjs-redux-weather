@@ -21,14 +21,16 @@ export const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.container}>
         <ul className={styles.navigationItems}>
-          {links.map(({ href, label }) => {
-            const isActive = href === pathname;
-            return (
-              <li key={href} className={isActive ? styles.active : ""}>
-                <Link href={href}>{label}</Link>
-              </li>
-            );
-          })}
+          {user
+            ? links.map(({ href, label }) => {
+                const isActive = href === pathname;
+                return (
+                  <li key={href} className={isActive ? styles.active : ""}>
+                    <Link href={href}>{label}</Link>
+                  </li>
+                );
+              })
+            : null}
         </ul>
 
         <div className={styles.logo}>Weather App</div>
