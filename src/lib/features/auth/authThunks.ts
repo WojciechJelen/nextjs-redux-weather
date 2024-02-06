@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "@/auth";
 import { signOut as authSignOut, signIn as authSignIn } from "next-auth/react";
-import { clearUser, setUser } from "./authSlice";
+import { clearUser } from "./authSlice";
 import {
   DEFAULT_REDIRECT_URL,
   DEFAULT_REDIRECT_URL_AFTER_LOGOUT,
