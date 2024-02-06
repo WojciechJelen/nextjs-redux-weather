@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchWeatherByCity } from "./weatherThunks";
-import { CombinedWeatherData, WeatherState } from "./types";
+import { CombinedWeatherData } from "./types";
 import { initialState } from "./initialState";
 
 const weatherSlice = createSlice({
