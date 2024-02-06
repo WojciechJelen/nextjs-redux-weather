@@ -1,0 +1,22 @@
+$primary-color: #4285f4; // Google's blue color
+$text-color: #333;
+$font-stack: "Roboto", sans-serif;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}
+
+.title {
+  color: $text-color;
+  font-family: $font-stack;
+  margin-bottom: 20px;
+}

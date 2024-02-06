@@ -3,6 +3,7 @@ import StoreProvider from "@/app/store-provider";
 import { auth } from "@/auth";
 import style from "./page.module.scss";
 import { TemperatureChart } from "@/app/components/weather-history";
+import { Suspense } from "react";
 
 const DashboardPage = async () => {
   const session = await auth();
@@ -10,8 +11,12 @@ const DashboardPage = async () => {
   return (
     <StoreProvider user={session?.user ?? null}>
       <div className={style.wrapper}>
-        <WeatherDataGrid />
-        <TemperatureChart />
+        <Suspense fallback={<p>Loading feed...</p>}>
+          <WeatherDataGrid />
+        </Suspense>
+        <Suspense fallback={<p>Loading weather...</p>}>
+          <TemperatureChart />
+        </Suspense>
       </div>
     </StoreProvider>
   );
